@@ -2,7 +2,7 @@
   "name": "goit-react-hw-02-phonebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://fear3db3ard.github.io/goit-react-hw-02-phonebook/",
+  "homepage": "https://fear3db3ard.github.io/goit-react-hw-03-phonebook/",
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
