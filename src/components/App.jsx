@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid'; 
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
-import './App.css';
+import Filter from './Filter/Filter';
+import styles from './App.module.css';
 
 const App = () => {
   const [contacts, setContacts] = useState([]);
@@ -12,11 +13,13 @@ const App = () => {
   useEffect(() => {
     const storedContacts = JSON.parse(localStorage.getItem('contacts')) || [];
     setContacts(storedContacts);
+    console.log('Loaded contacts from localStorage:', storedContacts); // Log the contacts loaded from localStorage
   }, []);
 
   // Save contacts to localStorage whenever contacts state changes
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
+    console.log('Contacts saved to localStorage:', contacts); // Log the contacts saved to localStorage
   }, [contacts]);
 
   const handleAddContact = (name, number) => {
@@ -36,7 +39,7 @@ const App = () => {
     setContacts(updatedContacts);
   };
 
-  const handleFilterChange = event => {
+  const handleFilterChange = (event) => {
     setFilter(event.target.value);
   };
 
@@ -45,18 +48,12 @@ const App = () => {
   );
 
   return (
-    <div className="App">
+    <div className={styles.App}>
       <h1>Phonebook</h1>
       <ContactForm onAddContact={handleAddContact} />
 
       <h2>Contacts</h2>
-      <input
-        type="text"
-        value={filter}
-        onChange={handleFilterChange}
-        placeholder="Search contacts..."
-        className="filter-input"
-      />
+      <Filter value={filter} onChange={handleFilterChange} />
       <ContactList contacts={filteredContacts} onDeleteContact={handleDeleteContact} />
     </div>
   );
